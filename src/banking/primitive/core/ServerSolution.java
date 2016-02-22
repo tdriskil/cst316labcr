@@ -27,8 +27,9 @@ class ServerSolution implements AccountServer {
 				int size = sizeI.intValue();
 				for (int i=0; i < size; i++) {
 					Account acc = (Account) in.readObject();
-					if (acc != null)
+					if (acc != null) {
 						accountMap.put(acc.getName(), acc);
+					}
 				}
 			}
 		} catch (Exception e) {
@@ -107,11 +108,12 @@ class ServerSolution implements AccountServer {
 	public void saveAccounts() throws IOException {
 		ObjectOutputStream out = null; 
 		try {
+			List<Account> theAccounts = new ArrayList<Account>(accountMap.values());
 			out = new ObjectOutputStream(new FileOutputStream(fileName));
 
-			out.writeObject(Integer.valueOf(accountMap.size()));
-			for (int i=0; i < accountMap.size(); i++) {
-				out.writeObject(accountMap.get(i));
+			out.writeObject(Integer.valueOf(theAccounts.size()));
+			for (int i=0; i < theAccounts.size(); i++) {
+				out.writeObject(theAccounts.get(i));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
