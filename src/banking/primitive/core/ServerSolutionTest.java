@@ -36,6 +36,9 @@ public class ServerSolutionTest {
 		for( int i = 0; i < theAccounts.size(); i++ ) {
 			if( theAccounts.get( i ).getName().equals( "UnitTest" ) ) {
 				existsInList = true;
+				assertEquals(theAccounts.get( i ).getBalance(), 3000.0f, 0.1f);
+				assertEquals(theAccounts.get( i ).getType(), "Checking");
+				assertEquals(theAccounts.get( i ).getState(), Account.State.OPEN);
 			}
 		}
 		assertTrue(existsInList);
