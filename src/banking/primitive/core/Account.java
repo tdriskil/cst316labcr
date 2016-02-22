@@ -1,5 +1,18 @@
+/*
+  File:	Account.java
+  Author: KGary
+  Date:	02/15/16
+  
+  Description: File containing Abstract Account class declaration.
+*/
 package banking.primitive.core;
 
+/**
+Class: Account
+
+Description: An abstract class that outlines the desired methods and instance variables
+             for child classes to possess. 
+*/
 public abstract class Account implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -21,44 +34,35 @@ public abstract class Account implements java.io.Serializable {
         balance = b;
     }
 
-    /**
-     * @return name of the Account
-     */
     public final String getName() {
         return name;
     }
 
-    /**
-     * @return balance in the Account
-     */
     public final float getBalance() {
         return balance;
     }
 
     /**
-     * Adds money to an account. May not be done if the account is CLOSED
-     * 
-     * @param parameter
-     *            amount is a deposit and must be > 0
-     * @return true if the deposit was successful, false if not due to amount or
-     *         invalid state
-     */
+      Method: deposit
+      Inputs: float amount : a deposit value and must be > 0
+      Returns: boolean     : true if the deposit was successful, false if not 
+                             due to amount or invalid state
+  ​ 
+      Description: Adds money to an account. May not be done if the account is CLOSED.
+    */
     public abstract boolean deposit(float amount);
 
     /**
-     * Takes money out of an account. If the balance falls below 0 then the
-     * account is moved to an OVERDRAWN state
-     * 
-     * @param parameter
-     *            amount is a withdrawal and must be > 0
-     * @return true if the deposit was successful, false if not due to amount or
-     *         invalid state
-     */
+      Method: withdraw
+      Inputs: float amount : a withdrawal value and must be > 0
+      Returns: boolean     : true if the deposit was successful, false if not due to 
+                             amount or invalid state.
+  ​
+      Description: Takes money out of an account. If the balance falls below 0 then the
+                   account is moved to an OVERDRAWN state.
+    */
     public abstract boolean withdraw(float amount);
 
-    /**
-     * @return either "Checking" or "Savings"
-     */
     public abstract String getType();
 
     protected final State getState() {
@@ -69,6 +73,13 @@ public abstract class Account implements java.io.Serializable {
         state = s;
     }
 
+    /**
+    Method: toString
+    Inputs: N/A
+    Returns: String : the formatted string
+​
+    Description: Returns formated string containing account name, balance, and state.
+  */
     public String toString() {
         return "Account " + name + " has $" + balance + "and is " + getState()
                 + "\n";
