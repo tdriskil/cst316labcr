@@ -35,13 +35,14 @@ public class Savings extends Account {
 		if (getState() == State.OPEN && amount > 0.0f) {
 			balance = balance - amount;
 			numWithdraws++;
-			if (numWithdraws > 3)
+			if (numWithdraws > 3){
 				balance = balance - 1.0f;
 			// KG BVA: should be < 0
 			if (balance <= 0.0f) {
 				setState(State.OVERDRAWN);
 			}
-			return true;
+			}
+			return true; 
 		}
 		return false;
 	}
