@@ -121,7 +121,9 @@ class MainFrame extends JFrame {
 				thisAcct = (Account)li.next();
 				sb.append(thisAcct.toString()+"\n");
 			}
-
+			if (sb.length() == 0) {
+				sb.append("No Accounts on Server.");
+			}
 			JOptionPane.showMessageDialog(null, sb.toString());
 		}
 	}
